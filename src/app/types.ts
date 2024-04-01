@@ -11,4 +11,8 @@ export type DelineationProcessed = DelineationComputedData & {
   originalFileName: string;
 };
 
+export type DelineationResultsViewerProps = DelineationProcessed & {
+  selectedDate?: string;
+};
+
 export type CSVFile = string[];

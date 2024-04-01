@@ -4,9 +4,10 @@ import { DelineationProcessed } from "../types";
 import DelineationResultsViewer from "./DelineationResultsViewer";
 
 export function DelineationFileHandler() {
-  const [resultsToDiplay, setResultsToDisplay] = useState<
+  const [resultsToDisplay, setResultsToDisplay] = useState<
     DelineationProcessed | undefined
   >(undefined);
+  const [selectedDate, setSelectedDate] = useState<string>();
 
   const onFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -28,15 +29,27 @@ export function DelineationFileHandler() {
 
   return (
     <>
-      <input
-        id="csv-file-input"
-        type="file"
-        className="mb-5"
-        onChange={onFileChange}
-        multiple={false}
-        accept="csv"
-      />
-      {resultsToDiplay && <DelineationResultsViewer {...resultsToDiplay} />}
+      <div className="mb-5 d-flex justify-content-between">
+        <input
+          id="csv-file-input"
+          type="file"
+          onChange={onFileChange}
+          multiple={false}
+          accept="csv"
+        />
+
+        <input
+          type="datetime-local"
+          value={selectedDate}
+          onChange={e => setSelectedDate(e.target.value)}
+        />
+      </div>
+      {resultsToDisplay && (
+        <DelineationResultsViewer
+          {...resultsToDisplay}
+          selectedDate={selectedDate}
+        />
+      )}
     </>
   );
 }

@@ -1,9 +1,29 @@
 import { Card } from "react-bootstrap";
-import { DelineationProcessed } from "../types";
+import { DelineationResultsViewerProps } from "../types";
+import { useEffect, useState } from "react";
 
 export default function DelineationResultsViewer(
-  props: Readonly<DelineationProcessed>
+  props: Readonly<DelineationResultsViewerProps>
 ) {
+  const [timeMinHeartRate, setTimeMinHeartRate] = useState<string>();
+  const [timeMaxHeartRate, setTimeMaxHeartRate] = useState<string>();
+  useEffect(() => {
+    if (props.selectedDate) {
+      setTimeMinHeartRate(
+        new Date(
+          new Date(props.selectedDate).getTime() +
+            props.minHeartRateMinute * 60000
+        ).toLocaleString()
+      );
+      setTimeMaxHeartRate(
+        new Date(
+          new Date(props.selectedDate).getTime() +
+            props.maxHeartRateMinute * 60000
+        ).toLocaleString()
+      );
+    }
+  }, [props.selectedDate, props.minHeartRateMinute, props.maxHeartRateMinute]);
+
   return (
     <Card className="p-3">
       <Card.Title className="mb-1">
@@ -17,12 +37,20 @@ export default function DelineationResultsViewer(
           Mean heart rate through the sample : {props.meanHeartRate} BPM
         </div>
         <div>
-          Minimum heart was : {props.minHeartRate} BPM reached after{" "}
-          {props.minHeartRateMinute} minutes
+          Minimum heart rate was : {props.minHeartRate} BPM reached{" "}
+          {timeMinHeartRate ? (
+            <span>at time {timeMinHeartRate}</span>
+          ) : (
+            <span>after {props.minHeartRateMinute} minutes</span>
+          )}
         </div>
         <div>
-          Maximum heart was : {props.maxHeartRate} BPM reached after{" "}
-          {props.maxHeartRateMinute} minutes
+          Maximum heart rate was : {props.maxHeartRate} BPM reached{" "}
+          {timeMaxHeartRate ? (
+            <span>at time {timeMaxHeartRate}</span>
+          ) : (
+            <span>after {props.maxHeartRateMinute} minutes</span>
+          )}
         </div>
       </Card.Body>
     </Card>
