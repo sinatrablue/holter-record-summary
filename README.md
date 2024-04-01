@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is my subsmission for the Cardiologs homework !
 
-## Getting Started
+## Usage and testing
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +14,31 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the link provided in your console and play with my app ! (Please don't try to break it to hard because it will surely).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technical choices I made
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I used the following stack to build this homework quick and easy and to make it easy to use/consult/edit
 
-## Learn More
+- [Next.js](https://nextjs.org/) - To have client and server in one place and to make the app compact and intuitive
+- [React.js](https://react.dev) -  I'm used to it and I wanted to feel home with the Front-end dev
+- [Bootstrap and React-Bootstrap](https://react-bootstrap.github.io) - Writting plain CSS wasn't part of the plan ! (I love it though)
+- [Typescript]() - Do I really have to explain why ?
 
-To learn more about Next.js, take a look at the following resources:
+### Choices that were tempting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I thought about them with a stupid smile on my face and then convinced  myself it wasn't smart at all
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Angular Front + Ruby Back to be a crawler (but I don't know them yet)
+- A Back-end in Rust (I miss Rust and hate it at the same time)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Points to discuss or improve
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Obviously, **the interface is ugly** but I couldn't take the time to mock Cardiologs website or the real Holter platform
+
+- I didn't take the first minute in consideration for the min/max heart rates, it seemed **irrelevant**. Was it really an extreme value ?
+
+- Are my calculations really good ? I am quite happy with them ! Algorithm complexity for this delineation endpoint is *O(n)* in time, *n* being the number of lines in the CSV file ; *O(1)* in memory.
+
+- Loading states are missing but I didn't want to add, for instance, **ReactQuery** to the project. Using **useDeferredValue** could've been a lighter option too but I have to stop now to spend a fair time on it, compared to others appliants.

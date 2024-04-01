@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { DelineationFileHandler } from "./DelineationFileHandler/DelineationFileHandler";
+import { DelineationFileHandler } from "./DelineationAnalyser/DelineationFileHandler";
 
 export default function Home() {
   return (
