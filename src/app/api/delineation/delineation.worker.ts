@@ -20,23 +20,19 @@ export const generateHolterSummary = async (file: File) => {
 };
 
 const computeMeanHeartRateFromCSV = (csvFile: CSVFile) => {
-  const timeInQRSPhaseAndGlobalTime = csvFile.reduce(
-    (acc, curr) => {
-      const elementsOfCurrentLine = curr.split(",");
-      const [phase, start, end] = elementsOfCurrentLine;
-      if (!start || !end) return acc;
-      const timeOfThePhase = parseInt(end) - parseInt(start);
-      // add time spend during current phase to count if the current phase is QRS
-      if (phase === QRS_COMPLEX) acc[0] += timeOfThePhase;
-      // add the time to global accumulator every time
-      acc[1] += timeOfThePhase;
-      return acc;
-    },
-    [0, 0]
-  );
+  let globalQRSCount = 0;
+  // let minMinuteQRSCount = 0;
+  // let minMinuteNumber = 0;
+  // let maxMinuteQRSCount = 0;
+  // let maxMinuteNumber = 0;
+  csvFile.forEach(line => {
+    const elementsOfCurrentLine = line.split(",");
+    const [phase, start, end] = elementsOfCurrentLine;
+    if (!start || !end) return;
+    // add time spend during current phase to count if the current phase is QRS
+    if (phase === QRS_COMPLEX) globalQRSCount += 1;
+  });
 
-  const [QRSTimeAccumulator, globalTimeAccumulator] =
-    timeInQRSPhaseAndGlobalTime;
-  const computedMeanHeartRate = QRSTimeAccumulator / globalTimeAccumulator;
+  const computedMeanHeartRate = Math.round(globalQRSCount / 24 / 60);
   return computedMeanHeartRate;
 };
