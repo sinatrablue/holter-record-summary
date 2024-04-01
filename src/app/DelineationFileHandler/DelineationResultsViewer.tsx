@@ -14,8 +14,15 @@ export default function DelineationResultsViewer(
       </Card.Subtitle>
       <Card.Body>
         <div>
-          Mean frequency of QRS complexes through the sample :{" "}
-          {props.meanHeartRate}
+          Mean heart rate through the sample : {props.meanHeartRate} BPM
+        </div>
+        <div>
+          Minimum heart was : {props.minHeartRate} BPM reached after{" "}
+          {props.minHeartRateMinute} minutes
+        </div>
+        <div>
+          Maximum heart was : {props.maxHeartRate} BPM reached after{" "}
+          {props.maxHeartRateMinute} minutes
         </div>
       </Card.Body>
     </Card>
