@@ -5,13 +5,9 @@ This is my subsmission for the Cardiologs homework !
 To run the development server:
 
 ```bash
+npm i
+# then
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open the link provided in your console and play with my app ! (Please don't try to break it to hard because it will surely).
